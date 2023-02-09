@@ -1,6 +1,7 @@
 import CardUser from "./CardUser"
 import "../assets/css/listCollaborators/listCollaborators.css";
 import { useEffect, useState } from "react";
+import ButtonAdminAddUpdate from "./ButtonAdminAddUpdate";
 
 const ListCollaborateurs = () => {
     const [ collaborators, setCollaborators ] = useState([])
@@ -8,7 +9,8 @@ const ListCollaborateurs = () => {
     const [ queryCollaborator, setQueryCollaborator ] = useState("");
     const [ typeSearch, setTypeSearch ] = useState("choice");
     const [ categorySearch, setCategorySearch ] = useState("categorie");
-
+    const authorizationAdmin = JSON.parse(localStorage.getItem("userDetails"));
+    console.log(authorizationAdmin)
     useEffect(()=> {
         const getUserData = async() => {
             const data = JSON.parse(localStorage.getItem("listCollaborator"))
@@ -116,6 +118,7 @@ const ListCollaborateurs = () => {
                         return (
                             <div className="list_collaborators">
                                 <CardUser key={index} collaborator={collaborator}/>
+                                { authorizationAdmin.authorization === 1 ? <ButtonAdminAddUpdate /> : null }
                             </div>
                         )
                     })
