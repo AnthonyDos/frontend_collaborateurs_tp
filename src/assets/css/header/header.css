@@ -1,0 +1,27 @@
+.container_header {
+    display: flex;
+    justify-content: space-between;
+    background: #ee444d;
+    color: white;
+    width: 100%;
+}
+.header_intranet{
+    display: flex;
+}
+.navigation {
+    display: flex;
+}
+.img_container {
+    margin: auto;
+}
+.img {
+    max-width: 100%;
+    border-radius: 50%;
+    height: 30px;
+    
+}
+.btn_session {
+    border: none;
+    background: transparent;
+    color: white;
+}

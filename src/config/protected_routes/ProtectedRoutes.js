@@ -14,7 +14,7 @@ const ProtectedRoutes = ({ children }) => {
     if (isLoggedIn === false && !user.token && !storageToken?.token && storageIsLoggedIn != true) {
         useEffect(()=>{
             navigate(ROUTE_HOME)
-        }, navigate)
+        }, [navigate])
     }
     return children;
 }

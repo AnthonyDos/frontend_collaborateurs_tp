@@ -1,26 +1,37 @@
 import axios from "axios";
 import { BASE_URL } from "../config/config_api/ApiUrlUser";
 import * as CALL from "../config/config_api/ApiUrlUser";
-import { loginAction } from "../reduceurs/auth/ActionAuth";
-import { ROUTE_ACCOUNT } from "../config/config_routes/RoutesClient";
+import { ConfigHeader } from "../config/config_headers/ConfigHeaders";
+import { userIdAction } from "../reduceurs/user/ActionUser";
+import { listCollaboraterAction } from "../reduceurs/listCollaborater/ActionListCollaborater";
 
-export const loginService = (email, password,setErrorLogin, dispatch, navigate) => {
-   
-    axios.post(BASE_URL + CALL.API_URL_LOGIN_USER, {
-        email: email,
-        password: password
-    })
+
+
+export const getUserService = (userId, dispatch) => {
+
+    axios.get(BASE_URL + CALL.API_URL_GET_BY_USER_ID + userId, { headers: ConfigHeader()})
     .then((response)=> {
-        const access_token = response.data.token
-        const userDetailsAuth = response?.data
-        console.log(access_token)
-        dispatch(loginAction(userDetailsAuth))
-        localStorage.setItem("userDetails", JSON.stringify(userDetailsAuth))
-        console.log(userDetailsAuth)
-        navigate(ROUTE_ACCOUNT)
-        return response
+        const userDetails = response?.data?.result
+        dispatch(userIdAction(userDetails))
+        localStorage.setItem("user", JSON.stringify(userDetails))
     })
     .catch((error)=> {
-        setErrorLogin(error?.response?.data?.message)
+        console.log({error : error})
+    })
+}
+
+export const getListCollaboratorService = (dispatch) => {
+
+    axios.get(BASE_URL + CALL.API_URL_GET_ALL_USER, { headers: ConfigHeader()})
+    .then((response)=> {
+        const listCollaborater = response?.data?.result;
+        localStorage.setItem("listCollaborator", JSON.stringify(listCollaborater));
+        dispatch(listCollaboraterAction(listCollaborater))
+        console.log(response.data.result[0])
+        
+    })
+    .catch((error) => {
+        //setErrorListCollaborater(error.response.data.message)
+        console.log({error : error})
     })
 }

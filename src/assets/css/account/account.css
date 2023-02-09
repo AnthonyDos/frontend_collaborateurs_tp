@@ -1,0 +1,14 @@
+.card_user {
+    display: flex;
+    justify-content: space-between;
+    max-width: 40%;
+    height: 217px;
+    margin: 2% auto;
+    box-shadow: 0px -5px 10px 0px rgba(0, 0, 0, 0.5)
+}
+
+.btn_hello {
+    background: #f04949;
+    color: white;
+    border: none;
+}

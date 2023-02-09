@@ -1,10 +1,11 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import '../src/assets/css/App.css'
-import { ROUTE_ACCOUNT, ROUTE_ERROR_ALL_PATH } from './config/config_routes/RoutesClient';
+import * as ACCESS from './config/config_routes/RoutesClient';
 import ProtectedRoutes from './config/protected_routes/ProtectedRoutes';
 import Account from './views/Account';
 import Home from './views/Home';
+import ListCollaborater from './views/ListCollaborater';
 
 function App() {
 
@@ -18,14 +19,22 @@ function App() {
 
           />
           <Route
-            path={ROUTE_ACCOUNT}
+            path={ACCESS.ROUTE_ACCOUNT}
             element={
               <ProtectedRoutes>
                 <Account />
               </ProtectedRoutes>
             }
           />
-          <Route path={ROUTE_ERROR_ALL_PATH} element={<Home />} />
+          <Route
+            path={ACCESS.ROUTE_LIST_COLLABORATER}
+            element={
+              <ProtectedRoutes>
+                <ListCollaborater />
+              </ProtectedRoutes>
+            }
+          />
+          <Route path={ACCESS.ROUTE_ERROR_ALL_PATH} element={<Home />} />
         </Routes>
       </BrowserRouter>
     </div>

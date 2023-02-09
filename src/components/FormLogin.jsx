@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { errorRegexEmail, errorRegexPassword } from "../assets/utils/ErrorMessages";
 import { REGEX_EMAIL, REGEX_PASSWORD } from "../assets/utils/Regex";
-import { loginService } from "../services/userServices";
+import { loginService } from "../services/AuthService";
 
 const FormLogin = () => {
     
@@ -44,7 +44,6 @@ const FormLogin = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         loginService(email, password, setErrorLogin, dispatch, navigate)
-    
     }
     return(
         <form>

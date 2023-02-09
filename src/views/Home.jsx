@@ -5,7 +5,7 @@ import Header from "../components/Header";
 const Home = () => {
 
     return(
-        <div>
+        <div className="home_container">
             <Header />
             <FormLogin />
         </div>
