@@ -9,3 +9,10 @@
     box-shadow: 0px -5px 10px 0px rgba(0, 0, 0, 0.5);
     height: 217px;
 }
+.container-search {
+    display: flex;
+    justify-content: space-around;
+    width: 42%;
+    align-items: center;
+    margin: auto;
+}

@@ -14,6 +14,13 @@ export default function reducerListCollaborater(state= initialState, action) {
             ...state,
             state: payload != null ? payload : storageListCollaborators
         }  
+
+        case ActionTypesListCollaborater.DELETE_COLLABORATOR:
+            return(
+                state === Object.values(state).filter(
+                    (collaborator) => collaborator.id !== payload
+                )
+            )
     
         default:
             return state;

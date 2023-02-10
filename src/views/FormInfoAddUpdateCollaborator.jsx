@@ -2,14 +2,16 @@ import FormInfoCollaborator from "../components/FormInfoCollaborator";
 import Header from "../components/Header";
 
 
-const FormInfoUpdateCollaborator = () => {
+
+const FormInfoAddUpdateCollaborator = () => {
+    
     return(
         <div>
             <Header />
             <span></span>
-            <FormInfoCollaborator />
+            <FormInfoCollaborator/>
         </div>
     )
 }
 
-export default FormInfoUpdateCollaborator;
+export default FormInfoAddUpdateCollaborator;

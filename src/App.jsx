@@ -4,8 +4,7 @@ import '../src/assets/css/App.css'
 import * as ACCESS from './config/config_routes/RoutesClient';
 import ProtectedRoutes from './config/protected_routes/ProtectedRoutes';
 import Account from './views/Account';
-import FormInfoAddCollaborator from './views/FormInfoAddCollaborator';
-import FormInfoUpdateCollaborator from './views/FormInfoUpdateCollaborator';
+import FormInfoAddUpdateCollaborator from './views/FormInfoAddUpdateCollaborator';
 import Home from './views/Home';
 import ListCollaborater from './views/ListCollaborater';
 
@@ -40,15 +39,15 @@ function App() {
             path={ACCESS.ROUTE_CREATE_COLLABORATOR}
             element={
               <ProtectedRoutes>
-                <FormInfoAddCollaborator />
+                <FormInfoAddUpdateCollaborator />
               </ProtectedRoutes>
             }
           />
           <Route
-            path={ACCESS.ROUTE_UPDATE_COLLABORATOR}
+            path={ACCESS.ROUTE_UPDATE_COLLABORATOR + ":userId"}
             element={
               <ProtectedRoutes>
-                <FormInfoUpdateCollaborator />
+                <FormInfoAddUpdateCollaborator />
               </ProtectedRoutes>
             }
           />

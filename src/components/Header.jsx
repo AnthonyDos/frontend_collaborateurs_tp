@@ -3,7 +3,7 @@ import { MdLogin, MdLogout } from "react-icons/md";
 import { FaList } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ROUTE_HOME, ROUTE_LIST_COLLABORATER } from "../config/config_routes/RoutesClient";
+import { ROUTE_CREATE_COLLABORATOR, ROUTE_HOME, ROUTE_LIST_COLLABORATER } from "../config/config_routes/RoutesClient";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutAction } from "../reduceurs/auth/ActionAuth";
 import "../assets/css/header/header.css";
@@ -53,6 +53,9 @@ const Header = () => {
                 <p>Intranet</p>
             </div>
             <div className="navigation">
+                <button onClick={()=>navigate(ROUTE_CREATE_COLLABORATOR)}>
+                    <p>Ajouter</p>
+                </button>
                 <ListCollaborateurs />
                 <div className="img_container">
                     {  isLoggedIn ? <img className="img" src={userDetail?.photo} alt="photo de profil" /> : null}

@@ -4,6 +4,7 @@ import * as CALL from "../config/config_api/ApiUrlUser";
 import { ConfigHeader } from "../config/config_headers/ConfigHeaders";
 import { userIdAction } from "../reduceurs/user/ActionUser";
 import { listCollaboraterAction } from "../reduceurs/listCollaborater/ActionListCollaborater";
+import { ROUTE_LIST_COLLABORATER } from "../config/config_routes/RoutesClient";
 
 
 
@@ -33,5 +34,32 @@ export const getListCollaboratorService = (dispatch) => {
     .catch((error) => {
         //setErrorListCollaborater(error.response.data.message)
         console.log({error : error})
+    })
+}
+
+export const updateCollaboratorService = (collaborator, userId) => {
+    console.log(collaborator)
+    axios.put(BASE_URL + CALL.API_URL_UPDATE_USER + userId,collaborator, { headers: ConfigHeader()})
+    .then((response)=> {
+        console.log(response)
+        //navigate(ROUTE_LIST_COLLABORATER);
+        return response;
+    })
+    .catch((error)=> {
+        console.log(collaborator)
+        console.log({error: error})
+    })
+}
+
+export const deleteCollaborateurService = (userId, dispatch) => {
+
+    axios.delete(BASE_URL + CALL.API_URL_DELETE_USER + userId,{ headers: ConfigHeader()})
+    .then((response)=> {
+        getListCollaboratorService()
+        console.log(response)
+        dispatch(actionErrorMessageGetAllCommandByIdClientAdmin(userId))
+    })
+    .catch((error)=> {
+        console.log(error)
     })
 }

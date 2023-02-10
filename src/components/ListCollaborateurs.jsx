@@ -10,6 +10,7 @@ const ListCollaborateurs = () => {
     const [ typeSearch, setTypeSearch ] = useState("choice");
     const [ categorySearch, setCategorySearch ] = useState("categorie");
     const authorizationAdmin = JSON.parse(localStorage.getItem("userDetails"));
+
     console.log(authorizationAdmin)
     useEffect(()=> {
         const getUserData = async() => {
@@ -40,13 +41,13 @@ const ListCollaborateurs = () => {
                 collaborator.lastname.toLowerCase().includes(getSearch)); 
             setCollaborators(searchData);
 
-        }else if (getSearch.length > 0 && typeSearch === "lastname") {
+        }else if (getSearch.length > 0 && typeSearch === "lastname" ) {
 
             const searchData = collaborators.filter((collaborator)=> 
                 collaborator.lastname.toLowerCase().includes(getSearch)); 
             setCollaborators(searchData);
 
-        }else if (getSearch.length > 0 && typeSearch === "category") {
+        }else if (getSearch.length > 0 && typeSearch === "category" ) {
 
             const searchData = collaborators.filter((collaborator)=> 
                 collaborator.category.toLowerCase().includes(getSearch)); 
@@ -58,25 +59,23 @@ const ListCollaborateurs = () => {
                 collaborator.city.toLowerCase().includes(getSearch)); 
             setCollaborators(searchData);
 
-        }else if (getSearch.length > 0 && categorySearch === "Marketing") {
+        }else if (getSearch.length > 0 && typeSearch === "lastname" && categorySearch === "Marketing") {
 
             const searchData = collaborators.filter((collaborator)=> 
-                collaborator.lastname.toLowerCase().includes(getSearch) && collaborator.category === categorySearch || 
-                collaborator.firstname.toLowerCase().includes(getSearch) && collaborator.category === categorySearch); 
+                collaborator.lastname.toLowerCase().includes(getSearch) && typeSearch === "lastname" && collaborator.category.toLowerCase().includes(categorySearch)); 
             setCollaborators(searchData);
 
-        }else if (getSearch.length > 0 && categorySearch === "Technique") {
+        }else if (getSearch.length > 0 && typeSearch === "lastname" && categorySearch === "Technique") {
 
             const searchData = collaborators.filter((collaborator)=> 
-                collaborator.lastname.toLowerCase().includes(getSearch) && collaborator.category === categorySearch || 
-                collaborator.firstname.toLowerCase().includes(getSearch) && collaborator.category === categorySearch); 
+                collaborator.lastname.toLowerCase().includes(getSearch) && typeSearch === "lastname" && collaborator.category.toLowerCase().includes(categorySearch))
+                
             setCollaborators(searchData);
 
-        }else if (getSearch.length > 0 && categorySearch === "Client") {
+        }else if (getSearch.length > 0 && typeSearch === "lastname" && categorySearch === "Client") {
 
             const searchData = collaborators.filter((collaborator)=> 
-                collaborator.lastname.toLowerCase().includes(getSearch) && collaborator.category === categorySearch || 
-                collaborator.firstname.toLowerCase().includes(getSearch) && collaborator.category === categorySearch); 
+                collaborator.lastname.toLowerCase().includes(getSearch) && typeSearch === "lastname" && collaborator.category.toLowerCase().includes(categorySearch)) 
             setCollaborators(searchData);
 
         }else{
@@ -87,7 +86,7 @@ const ListCollaborateurs = () => {
 
     return(
         <> 
-            <div>
+            <div className="container-search">
                 <form>
                     <input type="search" value={queryCollaborator} onChange={(e)=> HandleSearch(e)} placeholder="Recherche..."/>
                 </form>
@@ -116,9 +115,9 @@ const ListCollaborateurs = () => {
                 {
                     collaborators.map((collaborator, index) => {
                         return (
-                            <div className="list_collaborators">
-                                <CardUser key={index} collaborator={collaborator}/>
-                                { authorizationAdmin.authorization === 1 ? <ButtonAdminAddUpdate /> : null }
+                            <div key={index} className="list_collaborators">
+                                <CardUser  collaborator={collaborator}/>
+                                { authorizationAdmin.authorization === 1 ? <ButtonAdminAddUpdate userId={collaborator.id}/> : null }
                             </div>
                         )
                     })

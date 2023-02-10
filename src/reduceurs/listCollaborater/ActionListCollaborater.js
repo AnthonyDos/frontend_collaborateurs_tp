@@ -6,3 +6,10 @@ export const listCollaboraterAction = (listCollaborater) => {
         payload: listCollaborater
     }
 }
+
+export const deleteCollaboratorAction = (id) => {
+    return { 
+        type: ActionTypesListCollaborater.DELETE_COLLABORATOR,
+        payload: id
+    }
+}
