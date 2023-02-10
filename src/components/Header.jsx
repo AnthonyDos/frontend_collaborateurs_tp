@@ -53,9 +53,11 @@ const Header = () => {
                 <p>Intranet</p>
             </div>
             <div className="navigation">
-                <button onClick={()=>navigate(ROUTE_CREATE_COLLABORATOR)}>
+                {
+                    isLoggedIn ? <button onClick={()=>navigate(ROUTE_CREATE_COLLABORATOR)}>
                     <p>Ajouter</p>
-                </button>
+                    </button> : null
+                }
                 <ListCollaborateurs />
                 <div className="img_container">
                     {  isLoggedIn ? <img className="img" src={userDetail?.photo} alt="photo de profil" /> : null}

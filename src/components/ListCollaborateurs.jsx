@@ -11,7 +11,6 @@ const ListCollaborateurs = () => {
     const [ categorySearch, setCategorySearch ] = useState("categorie");
     const authorizationAdmin = JSON.parse(localStorage.getItem("userDetails"));
 
-    console.log(authorizationAdmin)
     useEffect(()=> {
         const getUserData = async() => {
             const data = JSON.parse(localStorage.getItem("listCollaborator"))
@@ -19,7 +18,7 @@ const ListCollaborateurs = () => {
             setFilterData(data)
         }
         getUserData()
-    },[typeSearch])    
+    },[typeSearch, categorySearch])    
 
     const HandleSearchType = (e) => {
         const filterSearchType = e.target.value;
@@ -32,50 +31,61 @@ const ListCollaborateurs = () => {
     }
 
     const HandleSearch = (e) => {
-        
+
         const getSearch = e.target.value;
         
-        if (getSearch.length > 0 && categorySearch === "categorie" && typeSearch === "choice") {
+        if (getSearch.length > 0 && typeSearch.includes("choice") && categorySearch.includes("categorie")) {
 
             const searchData = collaborators.filter((collaborator)=> 
                 collaborator.lastname.toLowerCase().includes(getSearch)); 
             setCollaborators(searchData);
 
-        }else if (getSearch.length > 0 && typeSearch === "lastname" ) {
-
+        }else if (getSearch.length > 0 && typeSearch.includes("lastname") && categorySearch.includes("categorie")) {
+    
             const searchData = collaborators.filter((collaborator)=> 
                 collaborator.lastname.toLowerCase().includes(getSearch)); 
             setCollaborators(searchData);
 
-        }else if (getSearch.length > 0 && typeSearch === "category" ) {
-
-            const searchData = collaborators.filter((collaborator)=> 
-                collaborator.category.toLowerCase().includes(getSearch)); 
-            setCollaborators(searchData);
-
-        }else if (getSearch.length > 0 && typeSearch === "city") {
+        }else if (getSearch.length > 0 && typeSearch.includes("city") && categorySearch.includes("categorie")) {
 
             const searchData = collaborators.filter((collaborator)=> 
                 collaborator.city.toLowerCase().includes(getSearch)); 
             setCollaborators(searchData);
 
-        }else if (getSearch.length > 0 && typeSearch === "lastname" && categorySearch === "Marketing") {
+        }else if (getSearch.length > 0 && typeSearch.includes("lastname") && categorySearch.includes("Marketing")) {
 
             const searchData = collaborators.filter((collaborator)=> 
-                collaborator.lastname.toLowerCase().includes(getSearch) && typeSearch === "lastname" && collaborator.category.toLowerCase().includes(categorySearch)); 
+                collaborator.category.includes(categorySearch) && collaborator.lastname.toLowerCase().includes(getSearch)) 
             setCollaborators(searchData);
 
-        }else if (getSearch.length > 0 && typeSearch === "lastname" && categorySearch === "Technique") {
+        }else if (getSearch.length > 0 && typeSearch.includes("lastname") && categorySearch.includes("Technique")) {
 
             const searchData = collaborators.filter((collaborator)=> 
-                collaborator.lastname.toLowerCase().includes(getSearch) && typeSearch === "lastname" && collaborator.category.toLowerCase().includes(categorySearch))
-                
+                collaborator.category.includes(categorySearch) && collaborator.lastname.toLowerCase().includes(getSearch)) 
             setCollaborators(searchData);
 
-        }else if (getSearch.length > 0 && typeSearch === "lastname" && categorySearch === "Client") {
+        }else if (getSearch.length > 0 && typeSearch.includes("lastname") && categorySearch.includes("Client")) {
 
             const searchData = collaborators.filter((collaborator)=> 
-                collaborator.lastname.toLowerCase().includes(getSearch) && typeSearch === "lastname" && collaborator.category.toLowerCase().includes(categorySearch)) 
+                collaborator.category.includes(categorySearch) && collaborator.lastname.toLowerCase().includes(getSearch)) 
+            setCollaborators(searchData);
+
+        }else if (getSearch.length > 0 && typeSearch.includes("city") && categorySearch.includes("Client")) {
+
+            const searchData = collaborators.filter((collaborator)=> 
+                collaborator.category.includes(categorySearch) && collaborator.city.toLowerCase().includes(getSearch)) 
+            setCollaborators(searchData);
+
+        }else if (getSearch.length > 0 && typeSearch.includes("city") && categorySearch.includes("Technique")) {
+
+            const searchData = collaborators.filter((collaborator)=> 
+                collaborator.category.includes(categorySearch) && collaborator.city.toLowerCase().includes(getSearch)) 
+            setCollaborators(searchData);
+
+        }else if (getSearch.length > 0 && typeSearch.includes("city") && categorySearch.includes("Marketing")) {
+
+            const searchData = collaborators.filter((collaborator)=> 
+                collaborator.category.includes(categorySearch) && collaborator.city.toLowerCase().includes(getSearch)) 
             setCollaborators(searchData);
 
         }else{
@@ -97,7 +107,6 @@ const ListCollaborateurs = () => {
                 >
                     <option value="choice">choix</option>
                     <option value="lastname">Nom</option>
-                    <option value="category">Catégorie</option>
                     <option value="city">Localisation</option>
                 </select>
                 <p>Catégorie</p>
