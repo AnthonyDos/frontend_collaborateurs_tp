@@ -48,15 +48,16 @@ const FormLogin = () => {
     }
     return(
         <form className="container_form_login">
-            <div>
+            <div className="title_login">
                 <h1>Connexion</h1>
                 <span></span>
                 <p>Pour vous connecter à l'intranet, entrez votre identifiant et mot de passe.</p>
             </div>
-            <div>
-                <div>
-                    <label htmlFor="email">Email :</label>
+            <div className="container_input_login">
+                <div className="input_login">
+                    <label className="label_login" htmlFor="email">Email :</label>
                     <input 
+                        className="input_login"
                         id="email"
                         type="email" 
                         value={email}
@@ -66,9 +67,10 @@ const FormLogin = () => {
                     />
                     <span>{errorEmail}</span>
                 </div>
-                <div>
-                    <label htmlFor="password">Mot de passe :</label>
+                <div className="input_login">
+                    <label className="label_login" htmlFor="password">Mot de passe :</label>
                     <input 
+                        className="input_login"
                         id="password"
                         type="password" 
                         value={password}
@@ -79,12 +81,15 @@ const FormLogin = () => {
                     <span>{errorPassword}</span>
                 </div>
             </div>
-            <button 
-                disabled={disabledBtn}
-                onClick={(e)=> handleSubmit(e)}
-            >
-                    <h2>CONNEXION</h2>
-            </button>
+            <div className="container_btn_login">
+                <button 
+                    className="btn_connexion"
+                    disabled={disabledBtn}
+                    onClick={(e)=> handleSubmit(e)}
+                >
+                        <h2>CONNEXION</h2>
+                </button>
+            </div>
             <span>{errorLogin}</span>
         </form>
     )

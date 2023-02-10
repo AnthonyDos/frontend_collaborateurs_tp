@@ -3,3 +3,28 @@
     margin: 9% auto;
     box-shadow: 0px -5px 10px 0px rgba(0, 0, 0, 0.5);
 }
+
+.input_login {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    width: 64%;
+    margin: 1% auto;
+}
+
+.label_login {
+    width: 50%;
+    text-align: start;
+}
+
+.container_btn_login {
+    display: flex;
+    margin-bottom: 2%;
+}
+
+button.btn_connexion {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    margin: 3% auto; 
+}
