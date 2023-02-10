@@ -7,12 +7,18 @@
 }
 .header_intranet{
     display: flex;
+    align-items: baseline;
+    justify-content: space-around;
+    width: 6%;
 }
 .navigation {
     display: flex;
+    align-items: center;
+    width: 19%;
 }
 .img_container {
     margin: auto;
+    width: 100%;
 }
 .img {
     max-width: 100%;
@@ -21,7 +27,31 @@
     
 }
 .btn_session {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
     border: none;
     background: transparent;
+    width: 100%;
     color: white;
+}
+.btn_add {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-around;
+    background: transparent;
+    border: none;
+    width: 31%;
+    color: white;
+}
+
+.header_connexion {
+    width: 34%;
+}
+
+.btn_session_connect {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 99%;
 }

@@ -26,7 +26,7 @@ const CardUser = (props) => {
     }
     const monthBirthdayLetters = GetMonthLetters(collaborator?.birthdate);
     return(
-        <>
+        <div className="card_info_container">
             <div className="container_img">
                 <img className="img_profile" src={collaborator?.photo} alt="photo de profil" />
             </div>
@@ -50,7 +50,7 @@ const CardUser = (props) => {
                     <p className="info_collab"><FaBirthdayCake /> Anniversaire : {monthBirthdayLetters}</p>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

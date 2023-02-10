@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { errorRegexEmail, errorRegexPassword } from "../assets/utils/ErrorMessages";
 import { REGEX_EMAIL, REGEX_PASSWORD } from "../assets/utils/Regex";
 import { loginService } from "../services/AuthService";
+import "../assets/css/home/home.css";
 
 const FormLogin = () => {
     
@@ -46,7 +47,7 @@ const FormLogin = () => {
         loginService(email, password, setErrorLogin, dispatch, navigate)
     }
     return(
-        <form>
+        <form className="container_form_login">
             <div>
                 <h1>Connexion</h1>
                 <span></span>

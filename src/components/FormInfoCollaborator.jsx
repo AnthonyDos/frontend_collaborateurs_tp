@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { errorRegexEmail, errorRegexPassword } from "../assets/utils/ErrorMessages";
 import { REGEX_EMAIL, REGEX_PASSWORD, REGEX_PHONE } from "../assets/utils/Regex";
 import { ROUTE_UPDATE_COLLABORATOR } from "../config/config_routes/RoutesClient";
 import { updateCollaboratorService } from "../services/userServices";
-
+import "../assets/css/formInfoCollaborator/formInfoCollaborator.css";
 
 const FormInfoCollaborator = () => {
-    const navigate = useNavigate();
     const locationPath  = useLocation();
     const locationParams = useParams();
     const [ gender, setGender ] = useState("male");
@@ -140,10 +139,11 @@ const FormInfoCollaborator = () => {
 
 
     return(
-        <form>
-            <div>
-                <p>*Civilité</p>
+        <form className="container_form">
+            <div className="section_data_select">
+                <p className="attribut_name">*Civilité</p>
                 <select 
+                    className="input_data_select"
                     onChange={(e)=> (setGender(e.target.value))} 
                     defaultValue={"male"}
                 >
@@ -151,9 +151,10 @@ const FormInfoCollaborator = () => {
                     <option value="female">Femme</option>
                 </select>
             </div>
-            <div>
-                <p>*Catégorie</p>
+            <div className="section_data_select">
+                <p className="attribut_name">*Catégorie</p>
                 <select 
+                    className="input_data_select"
                     onChange={(e)=> (setCategory(e.target.value))} 
                     defaultValue={"Marketing"}
                 >
@@ -162,97 +163,107 @@ const FormInfoCollaborator = () => {
                     <option value="Client">Client</option>
                 </select>
             </div>
-            <div>
-                <p>*Nom :</p>
+            <div className="section_data">
+                <p className="attribut_name">*Nom :</p>
                 <input 
+                    className="input_data"
                     type="text" 
                     value={lastname}
                     name="lastname"
                     onChange={(e)=> (setLastname(e.target.value))} 
                     required />
             </div>
-            <p>{errorLastname}</p>
-            <div>
-                <p>*Prénom :</p>
+            <p className="error">{errorLastname}</p>
+            <div className="section_data">
+                <p className="attribut_name">*Prénom :</p>
                 <input 
+                    className="input_data"
                     type="text" 
                     value={firstname} 
                     onChange={(e)=> (setFirstname(e.target.value))}
                     required
                 />
             </div>
-            <p>{errorFirstname}</p>
-            <div>
-                <p>*Email :</p>
+            <p className="error">{errorFirstname}</p>
+            <div className="section_data">
+                <p className="attribut_name">*Email :</p>
                 <input 
+                    className="input_data"
                     type="email" 
                     value={email}
                     onChange={(e)=> (setEmail(e.target.value))}
                     required
                 />
             </div>
-            <p>{errorEmail}</p>
-            <div>
-                <p>Mot de passe :</p>
+            <p className="error">{errorEmail}</p>
+            <div className="section_data">
+                <p className="attribut_name">Mot de passe :</p>
                 <input 
+                    className="input_data"
                     type="password" 
                     value={password} 
                     onChange={(e)=> (setPassword(e.target.value))}
                     required
                 />
             </div>
-            <p>{errorPassword}</p>
-            <div>
-                <p>Confirmation :</p>
-                <input 
+            <p className="error">{errorPassword}</p>
+            <div className="section_data">
+                <p className="attribut_name">Confirmation :</p>
+                <input
+                    className="input_data" 
                     type="password" 
                     value={confirmPassword} 
                     onChange={(e)=> (setConfirmPassword(e.target.value))}
                     required
                 />
             </div>
-            <p>{errorConfirmPassword}</p>
-            <div>
-                <p>*Téléphone :</p>
-                <input 
+            <p className="error">{errorConfirmPassword}</p>
+            <div className="section_data">
+                <p className="attribut_name">*Téléphone :</p>
+                <input
+                    className="input_data" 
                     type="text"
                     value={phone} 
                     onChange={(e)=> (setPhone(e.target.value))}
                     required
                 />
             </div>
-            <p>{errorPhone}</p>
-            <div>
-                <p>*Date de naissance :</p>
+            <p className="error">{errorPhone}</p>
+            <div className="section_data_date">
+                <p className="attribut_name">*Date de naissance :</p>
                 <input 
+                    className="input_data_date"
                     type="date" 
                     value={birthdate}
                     onChange={(e)=> (setBirthdate(e.target.value))}
                 />
             </div>
-            <div>
-                <p>*Ville :</p>
+            <div className="section_data"> 
+                <p className="attribut_name">*Ville :</p>
                 <input 
+                    className="input_data"
                     type="text" 
                     value={city} 
                     onChange={(e)=> (setCity(e.target.value))}
                     required
                 />
             </div>
-            <p>{errorCity}</p>
-            <div>
-                <p>*Pays :</p>
+            <p className="error">{errorCity}</p>
+            <div className="section_data">
+                <p className="attribut_name">*Pays :</p>
                 <input 
+                    className="input_data"
                     type="text" 
                     value={country} 
                     onChange={(e)=> (setCountry(e.target.value))}
                     required
                 />
             </div>
-            <p>{errorCountry}</p>
-            <div>
-                <p>URL de la photo :</p>
+            <p className="error">{errorCountry}</p>
+            <div className="section_data">
+                <p className="attribut_name">URL de la photo :</p>
                 <input 
+                    className="input_data"
                     type="text" 
                     value={photo} 
                     onChange={(e)=> (setPhoto(e.target.value))}
@@ -262,12 +273,14 @@ const FormInfoCollaborator = () => {
 
             locationPath.pathname === ROUTE_UPDATE_COLLABORATOR + locationParams.userId ?
             <button 
+                className="btn_info_collab"
                 disabled={disabledBtn} 
                 onClick={(e)=> HandleUpdate(e)}
             >
                 <p>MODIFIER</p>
             </button> :
             <button 
+                className="btn_info_collab"
                 disabled={disabledBtn} 
                 onClick={(e)=> HandleAdd(e)}
             >

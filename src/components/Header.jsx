@@ -7,6 +7,7 @@ import { ROUTE_CREATE_COLLABORATOR, ROUTE_HOME, ROUTE_LIST_COLLABORATER } from "
 import { useDispatch, useSelector } from "react-redux";
 import { logoutAction } from "../reduceurs/auth/ActionAuth";
 import "../assets/css/header/header.css";
+import { IoPersonAddSharp } from "react-icons/io5";
 
 const Header = () => {
 
@@ -23,7 +24,7 @@ const Header = () => {
         if (isLoggedIn) {
             return (
                 <button className="btn_session" onClick={()=>(navigate(ROUTE_LIST_COLLABORATER))}>
-                    <span><FaList/></span> 
+                    <FaList/>
                     <p>Liste</p>
                 </button>
             )
@@ -40,7 +41,7 @@ const Header = () => {
             )
         }
         return (
-            <div>
+            <div className="btn_session_connect">
                 <MdLogin />
                 <p>Connexion</p>
             </div>
@@ -54,8 +55,9 @@ const Header = () => {
             </div>
             <div className="navigation">
                 {
-                    isLoggedIn ? <button onClick={()=>navigate(ROUTE_CREATE_COLLABORATOR)}>
-                    <p>Ajouter</p>
+                    isLoggedIn ? <button className="btn_add" onClick={()=>navigate(ROUTE_CREATE_COLLABORATOR)}>
+                        <IoPersonAddSharp />
+                        <p>Ajouter</p>
                     </button> : null
                 }
                 <ListCollaborateurs />
